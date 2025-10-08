@@ -111,3 +111,11 @@ Login with: alice@example.com / password
 
 ---
 Happy building.
+
+---
+
+## 🎬 Download Demo Recording:
+
+https://drive.google.com/file/d/1uzlqursjP3fC9nhsGnsGEc5asc2yiTfh/view?usp=drive_link
+
+
