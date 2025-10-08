@@ -1,0 +1,11 @@
+{
+  "version": "1.0.4",
+  "createdAt": "2025-10-08T22:37:37.969Z",
+  "updatedAt": "2025-10-08T22:37:37.969Z",
+  "options": {
+    "ignoredControllerIdentifiers": [
+      "new-session"
+    ],
+    "ignoredAttributes": []
+  }
+}

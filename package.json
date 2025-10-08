@@ -7,7 +7,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "@hotwired/stimulus": "3.2.2",
+    "@hotwired/turbo-rails": "8.0.18",
+    "bootstrap": "^5.3.3",
+    "stimulus-vite-helpers": "3.1.0"
   },
   "devDependencies": {
     "sass": "^1.77.0",
