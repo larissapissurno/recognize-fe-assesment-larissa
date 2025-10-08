@@ -12,9 +12,24 @@
         <label class="form-label small">Email</label>
         <%= email_field_tag :email, params[:email], class: 'form-control form-control-sm' %>
       </div>
-      <div>
+      <div class="w-100">
         <label class="form-label small">Password</label>
-        <%= password_field_tag :password, nil, class: 'form-control form-control-sm' %>
+
+        <div class="input-group mb-3">
+          <%= 
+            password_field_tag :password,
+            params[:password], 
+            required: true,
+            class: 'form-control form-control-sm',
+            data: { new_session_target: 'password' } 
+          %>
+
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-action="click->new-session#togglePassword">
+            <i class="ph ph-eye-slash" style="display: none;" data-new-session-target="eyeSlashIcon"></i>
+            <i class="ph ph-eye" style="display: inline;" data-new-session-target="eyeIcon"></i>
+          </button>
+        </div>
+
       </div>
       <div>
         <%= submit_tag 'Login', class: 'btn btn-primary btn-sm w-100' %>
