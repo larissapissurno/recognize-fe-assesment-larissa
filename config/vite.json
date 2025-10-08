@@ -1,6 +1,6 @@
 {
   "all": {
-    "entrypointsDir": "app/frontend/entrypoints",
+    "sourceCodeDir": "app/frontend",
     "watchAdditionalPaths": []
   },
   "development": {
