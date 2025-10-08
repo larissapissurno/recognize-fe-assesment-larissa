@@ -7,6 +7,11 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
+    <%= vite_stylesheet_tag 'styles.scss' %>
+  </head>
   <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top border-bottom px-3">
       <a class="navbar-brand" href="/">Recognitions</a>
