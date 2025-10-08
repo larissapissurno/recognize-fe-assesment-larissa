@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Recognize Fe Test App" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top border-bottom px-3">
+      <a class="navbar-brand" href="/">Recognitions</a>
+      <div class="ms-auto d-flex gap-2 align-items-center">
+        <% if defined?(logged_in?) && logged_in? %>
+          <span class="small text-muted">Hi, <%= current_user.name %></span>
+          <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-secondary btn-sm' %>
+        <% else %>
+          <%= link_to 'Login', login_path, class: 'btn btn-primary btn-sm' %>
+        <% end %>
+      </div>
+    </nav>
+    <main class="container mt-4">
+      <% flash.each do |k,v| %>
+        <div class="alert alert-<%= k == 'alert' ? 'danger' : 'info' %> py-2 px-3 small"><%= v %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+  </body>
+</html>

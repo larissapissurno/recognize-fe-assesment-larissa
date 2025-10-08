@@ -1,0 +1,41 @@
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h2 class="h6 mb-3">Send Recognition</h2>
+        <%= form_with model: @recognition, url: recognitions_path, class: 'vstack gap-2' do |f| %>
+          <div>
+            <label class="form-label small">Recipient</label>
+            <%= f.select :recipient_id, options_from_collection_for_select(@users.where.not(id: current_user.id), :id, :name), {prompt: 'Choose'}, class: 'form-select form-select-sm' %>
+          </div>
+          <div>
+            <label class="form-label small">Badge</label>
+            <%= f.select :badge_id, options_from_collection_for_select(@badges, :id, :name), {prompt: 'Choose'}, class: 'form-select form-select-sm' %>
+          </div>
+          <div>
+            <label class="form-label small">Message</label>
+            <%= f.text_area :message, rows: 3, class: 'form-control form-control-sm' %>
+          </div>
+          <div>
+            <%= f.submit 'Send', class: 'btn btn-primary btn-sm' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <h2 class="h6 mb-3">Recent Recognitions</h2>
+    <ul class="list-group small">
+      <% @recognitions.each do |r| %>
+        <li class="list-group-item d-flex flex-column gap-1">
+          <div><strong><%= r.sender.name %></strong> recognized <strong><%= r.recipient.name %></strong> with <span class="badge text-bg-secondary"><%= r.badge.name %></span></div>
+          <div class="text-muted"><%= r.message %></div>
+          <div class="text-muted" style="font-size: 0.7rem;"><%= time_ago_in_words(r.created_at) %> ago</div>
+        </li>
+      <% end %>
+      <% if @recognitions.empty? %>
+        <li class="list-group-item text-muted">No recognitions yet.</li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+{
+  "all": {
+    "entrypointsDir": "app/frontend/entrypoints",
+    "outDir": "public/vite",
+    "assetsDir": "assets",
+    "watchAdditionalPaths": []
+  }
+}
