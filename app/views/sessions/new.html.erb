@@ -1,7 +1,8 @@
 <div class="row justify-content-center shadow-sm bg-light bg-gradient rounded login-container" data-controller="new-session">
-  <div class="col-sm-hidden col-md-6 col-lg-6 p-3 flex-1">
+  <div class="col-sm-hidden col-md-6 col-lg-6 p-3 flex-1 ">
     <h2 class="h1 mb-3 p-3">
-      Recognition for distributed teams felt impossible. <br><span class="text-recognize">Until now.</span>
+      Recognition for distributed teams felt impossible. <br>
+      <span class="text-recognize">Until now.</span>
     </h2>
     <%= image_tag "woman-laptop.png", alt: "Recognize", class: "img-fluid img-woman-laptop" %>
   </div>
@@ -10,29 +11,26 @@
     <%= form_with url: login_path, method: :post, class: 'vstack gap-3', data: { action: 'submit->new-session#validateForm' } do %>
       <div>
         <label class="form-label small">Email</label>
-        <%= email_field_tag :email, params[:email], 
+        <%= email_field_tag :email, params[:email],
             class: 'form-control form-control-sm',
-            data: { new_session_target: 'email' } %>
+            data: { new_session_target: 'email' }  %>
         <div class="invalid-feedback" style="display: none;" data-new-session-target="emailError"></div>
       </div>
       <div class="w-100">
         <label class="form-label small">Password</label>
-
         <div class="input-group mb-3">
-          <%= 
+          <%=
             password_field_tag :password,
-            params[:password], 
+            params[:password],
             class: 'form-control form-control-sm',
-            data: { new_session_target: 'password' } 
+            data: { new_session_target: 'password' }
           %>
-
           <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-action="click->new-session#togglePassword">
             <i class="ph ph-eye-slash" style="display: none;" data-new-session-target="eyeSlashIcon"></i>
             <i class="ph ph-eye" style="display: inline;" data-new-session-target="eyeIcon"></i>
           </button>
         </div>
         <div class="invalid-feedback" style="display: none;" data-new-session-target="passwordError"></div>
-
       </div>
       <div>
         <%= submit_tag 'Login', class: 'btn btn-primary btn-sm w-100', data: { new_session_target: 'submitButton' } %>
