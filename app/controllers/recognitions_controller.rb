@@ -11,14 +11,30 @@ class RecognitionsController < ApplicationController
   def create
     @recognition = Recognition.new(recognition_params)
     @recognition.sender = current_user
-    if @recognition.save
-      redirect_to root_path, notice: "Recognition sent"
-    else
-      @recognitions = Recognition.includes(:badge, :sender, :recipient).order(created_at: :desc)
-      @badges = Badge.order(:name)
-      @users = User.order(:name)
-      flash.now[:alert] = "Could not send recognition"
-      render :index, status: :unprocessable_entity
+
+    respond_to do |format|
+      if @recognition.save
+        format.html { redirect_to root_path, notice: "Recognition sent successfully! 🎉" }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.prepend(
+            "recent_recognitions",
+            partial: "recognitions/list_item",
+            locals: { recognition: @recognition }
+          )
+        }
+      else
+        @recognitions = Recognition.includes(:badge, :sender, :recipient).order(created_at: :desc)
+        @badges = Badge.order(:name)
+        @users = User.order(:name)
+
+        format.html {
+          flash.now[:alert] = "Could not send recognition"
+          render :index, status: :unprocessable_entity
+        }
+        format.turbo_stream {
+          render :index, status: :unprocessable_entity
+        }
+      end
     end
   end
 

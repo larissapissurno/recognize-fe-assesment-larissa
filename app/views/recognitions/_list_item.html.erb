@@ -1,0 +1,47 @@
+<div class="card mb-3 recognition-card new-recognition-item" 
+     data-recognition-id="<%= recognition.id %>"
+     data-badge-slug="<%= recognition.badge.slug %>">
+  <div class="row g-0">
+    <!-- Badge Image Column -->
+    <div class="col-md-3 col-4 d-flex align-items-center justify-content-center badge-image-bg">
+      <div class="badge-image-container">
+        <%= image_tag recognition.badge.image_path,
+            alt: recognition.badge.name,
+            class: "img-fluid badge-image",
+            loading: "lazy" %>
+      </div>
+    </div>
+    <!-- Content Column -->
+    <div class="col-md-9 col-8">
+      <div class="card-body">
+        <!-- Recognition Header -->
+        <div class="d-flex align-items-start justify-content-between mb-2">
+          <div class="flex-grow-1">
+            <h6 class="card-title mb-1">
+              <span class="fw-bold text-primary"><%= recognition.sender.name %></span>
+              <span class="text-muted small">recognized</span>
+              <span class="fw-bold text-success"><%= recognition.recipient.name %></span>
+            </h6>
+            <div class="badge-info">
+              <span class="badge bg-secondary-subtle text-secondary-emphasis">
+                <span class="font-icon">🏆</span>
+                <%= recognition.badge.name %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- Message -->
+        <p class="card-text mb-2 text-muted">
+          <%= recognition.message %>
+        </p>
+        <!-- Timestamp -->
+        <p class="card-text mb-0">
+          <small class="text-muted">
+            <i class="ph-fill ph-clock"></i>
+            <%= time_ago_in_words(recognition.created_at) %> ago
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

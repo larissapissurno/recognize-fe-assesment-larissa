@@ -1,55 +1,10 @@
-<div class="row g-4">
-  <div class="col-lg-4">
-    <div class="card border-0 shadow bg-light bg-gradient rounded">
-      <div class="card-body">
-        <h2 class="h6 mb-3">📌 Send Recognition</h2>
-        <%= form_with model: @recognition, url: recognitions_path, class: 'vstack gap-2', data: { controller: 'recognition', action: 'submit->recognition#validateForm' } do |f| %>
-          <div>
-            <label class="form-label small">Recipient</label>
-            <%= f.select :recipient_id, 
-                options_from_collection_for_select(@users.where.not(id: current_user.id), :id, :name), 
-                {prompt: 'Choose'}, 
-                class: 'form-select form-select-sm',
-                data: { recognition_target: 'recipient' } %>
-            <div class="invalid-feedback" style="display: none;" data-recognition-target="recipientError"></div>
-          </div>
-          <div>
-            <label class="form-label small">Badge</label>
-            <%= f.select :badge_id, 
-                options_from_collection_for_select(@badges, :id, :name), 
-                {prompt: 'Choose'}, 
-                class: 'form-select form-select-sm',
-                data: { recognition_target: 'badge' } %>
-            <div class="invalid-feedback" style="display: none;" data-recognition-target="badgeError"></div>
-          </div>
-          <div>
-            <label class="form-label small">Message</label>
-            <%= f.text_area :message, 
-                rows: 3, 
-                class: 'form-control form-control-sm',
-                data: { recognition_target: 'message' } %>
-            <div class="invalid-feedback" style="display: none;" data-recognition-target="messageError"></div>
-          </div>
-          <div>
-            <%= f.submit 'Send', class: 'btn btn-primary btn-sm', data: { recognition_target: 'submitButton' } %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-8">
-    <h2 class="h6 mb-3">Recent Recognitions</h2>
-    <ul class="list-group small">
-      <% @recognitions.each do |r| %>
-        <li class="list-group-item d-flex flex-column gap-1">
-          <div><strong><%= r.sender.name %></strong> recognized <strong><%= r.recipient.name %></strong> with <span class="badge text-bg-secondary"><%= r.badge.name %></span> 🎉</div>
-          <div class="text-muted"><%= r.message %></div>
-          <div class="text-muted" style="font-size: 0.7rem;"><%= time_ago_in_words(r.created_at) %> ago</div>
-        </li>
-      <% end %>
-      <% if @recognitions.empty? %>
-        <li class="list-group-item text-muted">No recognitions yet.</li>
-      <% end %>
-    </ul>
+<div class="row">
+  <div class="col-12">
+    <!-- Render trigger button partial -->
+    <%= render 'recognitions/trigger_button' %>
+    <!-- Recognitions list - now full width -->
+    <%= render partial: "recognitions/list", locals: { recognitions: @recognitions } %>
   </div>
 </div>
+<!-- Render modal partial at bottom of page -->
+<%= render 'recognitions/form_modal' %>
