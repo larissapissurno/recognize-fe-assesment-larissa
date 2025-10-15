@@ -5,41 +5,39 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-
+    <meta name="turbo-refresh-method" content="morph">
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link
+      <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
-
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= vite_client_tag %>
-    <%= vite_javascript_tag 'application' %>
-    <%= vite_stylesheet_tag 'styles.scss' %>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top border-bottom px-3">
-           <a class="navbar-brand" href="/">
-        <%= image_tag "recognize-logo.png", alt: "Recognize", class: "img-fluid img-logo" %>
-      </a>
-      <div class="ms-auto d-flex gap-2 align-items-center">
-        <% if defined?(logged_in?) && logged_in? %>
-          <span class="small text-muted">Hi, <%= current_user.name %></span>
-          <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-secondary btn-sm' %>
-        <% end %>
-      </div>
-    </nav>
-    <main class="container mt-4">
-      <% flash.each do |k,v| %>
-        <div class="alert alert-<%= k == 'alert' ? 'danger' : 'info' %> py-2 px-3 small"><%= v %></div>
-      <% end %>
-      <%= yield %>
-    </main>
-  </body>
-  </body>
-</html>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= vite_client_tag %>
+        <%= vite_javascript_tag 'application' %>
+        <%= vite_stylesheet_tag 'styles.scss' %>
+      </head>
+      <body>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top border-bottom px-3" data-turbo-permanent>
+          <a class="navbar-brand" href="/">
+            <%= image_tag "recognize-logo.png", alt: "Recognize", class: "img-fluid img-logo" %>
+          </a>
+          <div class="ms-auto d-flex gap-2 align-items-center">
+            <% if defined?(logged_in?) && logged_in? %>
+              <span class="small text-muted">Hi, <%= current_user.name %></span>
+              <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-secondary btn-sm' %>
+            <% end %>
+          </div>
+        </nav>
+        <main class="container mt-4">
+          <% flash.each do |k,v| %>
+            <div class="alert alert-<%= k == 'alert' ? 'danger' : 'info' %> py-2 px-3 small"><%= v %></div>
+          <% end %>
+          <%= yield %>
+        </main>
+      </body>
+    </body>
+  </html>
