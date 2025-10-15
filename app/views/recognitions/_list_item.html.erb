@@ -1,0 +1,14 @@
+<li class="list-group-item d-flex flex-column gap-1 new-recognition-item">
+  <div>
+    <strong><%= recognition.sender.name %></strong>
+    recognized
+    <strong><%= recognition.recipient.name %></strong>
+    with
+    <span class="badge text-bg-secondary"><%= recognition.badge.name %></span>
+    🎉
+  </div>
+  <div class="text-muted"><%= recognition.message %></div>
+  <div class="text-muted" style="font-size: 0.7rem;">
+    <%= time_ago_in_words(recognition.created_at) %> ago
+  </div>
+</li>
