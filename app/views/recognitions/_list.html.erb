@@ -1,8 +1,13 @@
-<ul class="list-group small" id="recent_recognitions">
+<div class="recognition-list" id="recent_recognitions">
   <% recognitions.each do |recognition| %>
     <%= render partial: "recognitions/list_item", locals: { recognition: recognition } %>
   <% end %>
   <% if recognitions.empty? %>
-    <li class="list-group-item text-muted">No recognitions yet.</li>
+    <div class="card mb-3">
+      <div class="card-body text-center text-muted py-5">
+        <i class="ph ph-trophy fs-1 mb-3 d-block"></i>
+        <p class="mb-0">No recognitions yet. Be the first to recognize someone!</p>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

@@ -1,0 +1,196 @@
+// Recognition Card Styles
+
+.recognition-card {
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border-radius: 12px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+}
+
+// Badge Image Background
+.badge-image-bg {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+// Badge-specific gradient backgrounds
+// .recognition-card {
+//   &[data-badge-slug="team_player"] {
+//     .badge-image-bg {
+//       background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+//     }
+//   }
+
+//   &[data-badge-slug="innovator"] {
+//     .badge-image-bg {
+//       background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+//     }
+//   }
+
+//   &[data-badge-slug="customer_hero"] {
+//     .badge-image-bg {
+//       background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+//     }
+//   }
+
+//   &[data-badge-slug="mentor"] {
+//     .badge-image-bg {
+//       background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+//     }
+//   }
+// }
+
+// Badge Image Container
+.badge-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 150px;
+
+  @media (max-width: 768px) {
+    min-height: 120px;
+    padding: 0.75rem !important;
+  }
+}
+
+.badge-image {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    max-width: 80px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Recognition list container
+.recognition-list {
+  .card {
+    border-radius: 12px;
+  }
+}
+
+// Card title styling
+.recognition-card {
+  .card-title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// Badge pill styling
+.badge-info {
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.5rem;
+  }
+}
+
+// Empty state
+.recognition-list {
+  .ph {
+    color: #dee2e6;
+  }
+}
+
+// Animation for new items
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.new-recognition-item {
+  animation: slideInDown 0.4s ease-out;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .recognition-card {
+    .row {
+      margin: 0;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+  }
+
+  .badge-image-container {
+    padding: 0.75rem !important;
+  }
+
+  // Smaller icon on mobile
+  .ph-trophy,
+  .ph-clock {
+    font-size: 0.875rem;
+  }
+}
+
+// Small screens - adjust column sizes
+@media (max-width: 576px) {
+  .recognition-card {
+    .badge-image {
+      max-width: 60px;
+    }
+
+    .card-title {
+      font-size: 0.8rem;
+    }
+
+    .card-text {
+      font-size: 0.8rem;
+    }
+
+    .badge-info .badge {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+}
+
+// Icon styling
+.recognition-card {
+  .ph {
+    vertical-align: middle;
+  }
+}
+
