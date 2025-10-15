@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="col-lg-8">
-    <h2 class="h6 mb-3">Recent Recognitions</h2>
+    <h2 class="h6 mb-3">Recognitions</h2>
     <%= turbo_frame_tag "recent_recognitions" do %>
       <%= render partial: "recognitions/list", locals: { recognitions: @recognitions } %>
     <% end %>

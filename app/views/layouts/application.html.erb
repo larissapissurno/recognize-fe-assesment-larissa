@@ -13,31 +13,45 @@
       <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
-        <%= csrf_meta_tags %>
-        <%= csp_meta_tag %>
-        <%= vite_client_tag %>
-        <%= vite_javascript_tag 'application' %>
-        <%= vite_stylesheet_tag 'styles.scss' %>
-      </head>
-      <body>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top border-bottom px-3" data-turbo-permanent>
-          <a class="navbar-brand" href="/">
-            <%= image_tag "recognize-logo.png", alt: "Recognize", class: "img-fluid img-logo" %>
-          </a>
-          <div class="ms-auto d-flex gap-2 align-items-center">
-            <% if defined?(logged_in?) && logged_in? %>
-              <span class="small text-muted">Hi, <%= current_user.name %></span>
-              <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-secondary btn-sm' %>
-            <% end %>
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
+    <%= vite_stylesheet_tag 'styles.scss' %>
+  </head>
+  <body data-controller="notification" 
+        data-notification-user-id-value="<%= current_user&.id %>"
+        data-notification-demo-mode-value="true">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top border-bottom px-3">
+      <a class="navbar-brand" href="/">
+        <%= image_tag "recognize-logo.png", alt: "Recognize", class: "img-fluid img-logo" %>
+      </a>
+      <div class="ms-auto d-flex gap-2 align-items-center">
+        <% if defined?(logged_in?) && logged_in? %>
+          <div class="position-relative me-3" style="cursor: pointer;" title="Notifications">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+            </svg>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none notification-badge"
+                  data-notification-target="badge">
+              0
+            </span>
           </div>
-        </nav>
-        <main class="container mt-4">
-          <% flash.each do |k,v| %>
-            <div class="alert alert-<%= k == 'alert' ? 'danger' : 'info' %> py-2 px-3 small"><%= v %></div>
-          <% end %>
-          <%= yield %>
-        </main>
-      </body>
-    </body>
-  </html>
+          <span class="small text-muted">Hi, <%= current_user.name %></span>
+          <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-secondary btn-sm' %>
+        <% end %>
+      </div>
+    </nav>
+    <main class="container mt-4">
+      <% flash.each do |k,v| %>
+        <div class="alert alert-<%= k == 'alert' ? 'danger' : 'info' %> py-2 px-3 small"><%= v %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+  </body>
+</html>
